@@ -1,0 +1,270 @@
+<?php
+
+?>
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta charset="UTF-8">
+	
+    <title>QRSApp</title>
+
+    <style type="text/css">
+        html,
+        body {
+            height: 100%;
+            background-color: black;
+            touch-action: none;
+            width: 100%;
+            position: fixed;
+            overflow: hidden;
+            overscroll-behavior: none;
+            overscroll-behavior-y: none;
+            overscroll-behavior-x: none;
+            z-index: -100000000000000000;
+        }
+        
+        .appLoadingIndicator {
+            opacity: .6;
+            -webkit-animation-name: appLoadingIndicator;
+            -webkit-animation-duration: 1.5s;
+            -webkit-animation-iteration-count: infinite;
+            -webkit-animation-direction: linear;
+        }
+        
+        #appLoadingIndicator > * {
+            background-color: #FFFFFF;
+            display: inline-block;
+            height: 30px;
+            -webkit-border-radius: 15px;
+            margin: 0 5px;
+            width: 30px;
+            opacity: 0.6;
+        }
+        
+        @-webkit-keyframes appLoadingIndicator {
+            0% {
+                opacity: 0.8
+            }
+            50% {
+                opacity: 1
+            }
+            100% {
+                opacity: 0.6
+            }
+        }
+        
+        @keyframes appLoadingIndicator {
+            0% {
+                opacity: 0.6
+            }
+            50% {
+                opacity: 1
+            }
+            100% {
+                opacity: 0.6
+            }
+        }
+        
+        .loaderImage2 {
+            /*opacity:0.6;*/
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            /* background-size: 100% auto; */
+            background-size: cover;
+            height: auto;
+            overflow: hidden;
+            background-repeat: no-repeat;
+            background-color: black;
+            /* background-image: url(resources/img/2048x2732x2nT.jpg?version=0.89); 
+			*/
+        }
+        
+        .loaderImageText {
+            position: absolute;
+            left: 0px;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            background-size: 100% auto;
+            height: auto;
+            overflow: hidden;
+            background-repeat: no-repeat;
+            background-color: black;
+            background-image: url(resources/img/2048x2732x2Icon.png?version=0.89);
+        }
+        
+        @media (orientation: landscape) {
+            .loaderImageText {
+                background-size: cover;
+                background-image: url(resources/img/2732x2048x2Icon.png?version=0.89);
+                /* background-image: url(resources/img/2732x2048x2text.png?version=0.89);  */
+            }
+        }
+        
+        .carousel-caption {
+            opacity: 0.7;
+            top: 0;
+            left: -30%;
+            bottom: auto;
+        }
+        
+        .img-rounded {
+            border: 1px solid white
+        }
+        
+        .x-boxscroller {
+            display: flex;
+            overflow: hidden;
+        }
+        
+        .x-boxscroller.x-horizontal {
+            flex-direction: row;
+        }
+        
+        ::-webkit-scrollbar {
+            height: 2px;
+            width: 2px;
+            /* remove scrollbar space */
+            background: transparent;
+            /* optional: just make scrollbar invisible */
+        }
+        /* optional: show position indicator in red transparent; */
+        
+        ::-webkit-scrollbar-thumb {
+            background: #999;
+        }
+        
+        .demo-solid-background {
+            background-color: #fafafa;
+            background-color: var(--background-color);
+        }
+        
+        .x-layout-center {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        
+        .card .x-innerhtml {
+            text-align: center;
+            font-size: 18px;
+            line-height: 24px;
+            padding: 10px;
+            width: 75%;
+        }
+        
+        .x-button.x-has-text .x-inner-el {
+            padding: unset important!;
+        }
+        
+        .ux-rating-picker {
+            line-height: 35px !important;
+        }
+        
+        .x-innerhtml {
+            width: 100% !important;
+        }
+        
+        .fltRight {
+            float: right;
+            padding: 5px;
+            margin: 5px;
+        }
+        
+        .fltLeft {
+            float: left;
+        }
+        .x-disabled {
+		    color: rgb(84, 84, 84) !important;
+		}
+
+        /*Sliders not thin...*/
+       /*  .x-thumb {
+		    height: 18px;
+		    width: 18px;
+		    background-color: #9aaebb !important;
+		    border-radius: 9px;
+		    margin-top: -9px;
+		}
+		.x-slider .x-track-el {
+		    height: 18px !important; 
+		    background-color: var(--divider-color);
+		}
+		.x-slider .x-fill-el {
+		   height: unset; 
+		    background-color: #c62828;
+			} */
+		.powerRed{
+			    color: red !important;
+		}
+		.powerBlue{
+			    color: darkblue !important;
+		}
+			
+    </style>
+
+</head>
+
+<body>
+    <div class=" loaderImageText appLoadingIndicator"></div>
+
+    <!-- framework css 
+       <script type="text/javascript" src="modern/css-vars.js?v=0.89"></script>
+		  <link rel="stylesheet" href="modern/hoho-all.css?v=0.89">
+		 <link rel="stylesheet" href="ext/theme-material/resources/theme-material-all.css"> 
+		 <link rel="stylesheet" href="ext/charts/modern-material/resources/charts-all.css"> 
+		 <link rel="stylesheet" href="resources/cssP/qrs2.css?v=0.89">
+		 <link rel="stylesheet" href="ext/sink/KitchenSink-all.css?v=0.89">
+		 <link rel="stylesheet" href="modern/hoho-all.css?v=0.89">
+		  <link rel="stylesheet" href="modern/hoho-all_.css?v=0.89">
+		 
+     -->
+	<link rel="stylesheet" href="ext/hoho-all.css?v=0.89">
+    <link rel="stylesheet" href="ext/calendar/material/resources/calendar-all.css?v=0.89">
+	
+    <script type="text/javascript" src="ext/ext-modern-all.js?v=0.89"></script>
+    <script type="text/javascript" src="ext/theme-material/theme-material.js?v=0.89"></script>
+
+    <!-- calendar javascript -->
+    <script type="text/javascript" src="ext/calendar/calendar.js?v=0.89"></script>
+    <!-- charts javascript   <script type="text/javascript" src="ext/charts/charts.js?v=0.89"></script>-->
+  
+
+
+	      <script>
+		  Ext.application({
+		  	name: 'SimpleAPP',
+		  	launch: function () {
+		  		Ext.Msg.alert('Test Message', '')
+		  		Ext.create({
+		  			xtype: 'calendar',
+		  			//	html:'test',
+		  			fullscreen: true,
+		  			height: '100%',
+		  			width: '100%',
+		  			//renderTo:Ext.getBody()//Ext.Viewport
+		  			//,renderTo:  Ext.select('.daytime_message')
+		  		}).show();
+		  	}
+		  })
+	
+	//This could be called from the connect pages if loaded.
+	/*Ext.create({
+				xtype:'calendar',
+        ,renderTo:  Ext.select('.daytime_message')
+    }).show();*/
+    	//This Breaks All Scrolling On the New Extjs Library!!! Argh...
+		//window.addEventListener("touchmove", function(event) {event.preventDefault();}, {passive: false} );
+	</script>
+</body>
+
+</html>

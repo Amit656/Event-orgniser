@@ -1,0 +1,9 @@
+SNGINE Notes--
+08-15-2019
+Added Resources folder for fonts
+Added calendar.tpl to ext
+Added ext resources/scripts
+Include CSS on Admin Page.
+Include JS later depending on page?
+
+If Upgrading Make sure to merge changes in TPLs/CSS/ And index.php
